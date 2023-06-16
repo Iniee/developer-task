@@ -66,7 +66,6 @@ class AuthController extends Controller
                 return response()->json([
                     'status' => true,
                     'user' => $user->email,
-                    'role' => $user->role,
                     'token' => $user->createToken("User Token of " . $user->email)->plainTextToken
                 ]);
             } else {

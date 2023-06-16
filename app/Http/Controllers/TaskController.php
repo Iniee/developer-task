@@ -109,8 +109,13 @@ class TaskController extends Controller
                 'title' => 'string|max:255|nullable',
                 'description' => 'string|nullable'
             ]);
-
-            $user = auth()->user();
+             $user = auth()->user();
+             if (!$task) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Invaild Task'
+                ], 401);
+            }
             if ($task->user_id !== $user->id) {
                 return response()->json([
                     'status' => false,
